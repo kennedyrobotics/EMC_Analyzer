@@ -1,0 +1,12 @@
+id: MIL461G_RE102_AIR_INT
+name: MIL-STD-461G RE102 - Radiated emissions, aircraft internal (@ 1 m)
+family: MIL-STD-461G
+type: radiated_emission
+unit: dBuV/m
+detector: PK
+distance_m: 1
+segments:
+  - [2e6, 100e6, 24, 24]
+  - [100e6, 18e9, 24, 69]
+verify: true
+notes: Representative RE102 aircraft limit. Confirm the exact curve for your platform (RE102-1..RE102-4).

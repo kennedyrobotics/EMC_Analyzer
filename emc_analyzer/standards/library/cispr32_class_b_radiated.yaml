@@ -1,0 +1,12 @@
+id: CISPR32_B_RE
+name: CISPR 32 Class B - Radiated emissions 30 MHz-1 GHz (QP @ 10 m)
+family: CISPR 32 / EN 55032
+type: radiated_emission
+unit: dBuV/m
+detector: QP
+distance_m: 10
+segments:            # [f_start_Hz, f_stop_Hz, level_start, level_stop]  (log-f interpolation)
+  - [30e6, 230e6, 30, 30]
+  - [230e6, 1e9, 37, 37]
+verify: true
+notes: Residential / Class B limits. Confirm values against the edition you are certifying to.

@@ -1,0 +1,33 @@
+# EED / HERO-style assessment, comparable to the EAS "EED" circuit type.
+name: Deployment squib firing circuit
+platform: Example vehicle
+system: Parachute deployment
+classification: Unclassified
+environment:
+  name: Illustrative RF environment - 200 V/m, 2 MHz-18 GHz (MIL-STD-461G RS103 above-deck level)
+  unit: V/m
+  source: Illustrative only. Replace with the authoritative environment for your platform.
+  bands:
+    - [2e6, 18e9, 200]
+circuits:
+  - name: FIRING_UNIT
+    type: eed
+    supply_voltage: 28
+    eeds:
+      - {name: SQUIB_1, no_fire_current_a: 1.0, bridgewire_resistance_ohm: 1.05, safety_margin_db: 16.5,
+         cable: FIRE_LEADS}
+cables:
+  # Rev A: unshielded leads, no RF filter -> try shielded: true / shield_termination: "360"
+  # and filter: SQUIB_RF_FILTER to see the improvement.
+  - {name: FIRE_LEADS, length_m: 1.2, shielded: false, exits_enclosure: true}
+filters:
+  - name: SQUIB_RF_FILTER
+    topology: pi
+    mode: both
+    source_impedance: 50
+    load_impedance: 1
+    rated_power_w: 2
+    elements:
+      - {kind: C, value: 1n, position: shunt, esr: 0.05, esl: 0.5n, name: C1}
+      - {kind: FB, value: 600, position: series, name: FB1, rated_power_w: 0.5}
+      - {kind: C, value: 1n, position: shunt, esr: 0.05, esl: 0.5n, name: C2}

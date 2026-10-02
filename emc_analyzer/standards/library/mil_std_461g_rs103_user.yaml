@@ -1,0 +1,9 @@
+id: MIL461G_RS103_50
+name: MIL-STD-461G RS103 - Radiated susceptibility (example 50 V/m, set per platform table)
+family: MIL-STD-461G
+type: radiated_immunity
+unit: V/m
+segments:
+  - [2e6, 18e9, 50, 50]
+verify: true
+notes: RS103 levels depend on platform & installation. Edit the level to match your requirement.

@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "emc-analyzer"
+version = "0.1.0"
+description = "EMI/EMC design assessment: circuits, enclosures and products vs standards, with mitigation advice"
+authors = [{ name = "Kennedy Robotics" }]
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.22", "PyYAML>=6.0", "matplotlib>=3.6"]
+
+[project.optional-dependencies]
+gui = ["PySide6>=6.5"]
+matlab = ["scipy>=1.9"]
+dev = ["pytest>=7"]
+
+[project.scripts]
+emc-analyzer = "emc_analyzer.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["emc_analyzer*"]
+
+[tool.setuptools.package-data]
+"emc_analyzer" = ["standards/library/*.yaml", "environments/*.yaml"]

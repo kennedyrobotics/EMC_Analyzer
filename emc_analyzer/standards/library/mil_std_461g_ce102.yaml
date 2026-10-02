@@ -1,0 +1,12 @@
+id: MIL461G_CE102_28V
+name: MIL-STD-461G CE102 - Conducted emissions, power leads (basic curve, <=28 V)
+family: MIL-STD-461G
+type: conducted_emission
+unit: dBuV
+detector: PK
+lisn: 5uH/50ohm
+segments:
+  - [10e3, 500e3, 94, 60]
+  - [500e3, 10e6, 60, 60]
+verify: true
+notes: Relax the basic curve by 10*log10(V/28) for higher source voltages (see standard).

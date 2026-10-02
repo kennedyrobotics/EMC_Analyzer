@@ -1,0 +1,8 @@
+numpy>=1.22
+PyYAML>=6.0
+matplotlib>=3.6
+PySide6>=6.5
+# optional
+scipy>=1.9          # MATLAB .mat import
+pytest>=7           # tests
+# matlabengine     # run MATLAB .m model files directly (install the version matching your MATLAB release)

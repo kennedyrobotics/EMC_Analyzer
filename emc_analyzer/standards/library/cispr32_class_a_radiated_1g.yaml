@@ -1,0 +1,12 @@
+id: CISPR32_A_RE_1G
+name: CISPR 32 Class A - Radiated emissions 1-6 GHz (Average @ 3 m)
+family: CISPR 32 / EN 55032
+type: radiated_emission
+unit: dBuV/m
+detector: AV
+distance_m: 3
+segments:
+  - [1e9, 3e9, 56, 56]
+  - [3e9, 6e9, 60, 60]
+verify: true
+notes: Peak limits are 20 dB higher (76/80 dBuV/m).

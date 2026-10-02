@@ -1,0 +1,11 @@
+id: CISPR32_A_CE_QP
+name: CISPR 32 Class A - Conducted emissions AC mains (QP)
+family: CISPR 32 / EN 55032
+type: conducted_emission
+unit: dBuV
+detector: QP
+lisn: 50uH/50ohm
+segments:
+  - [150e3, 500e3, 79, 79]
+  - [500e3, 30e6, 73, 73]
+verify: true

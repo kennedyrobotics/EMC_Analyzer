@@ -1,0 +1,6 @@
+name: Generic industrial - 10 V/m (IEC 61000-6-2 style radiated)
+unit: V/m
+source: Representative of IEC 61000-6-2 radiated immunity test level
+bands:
+  - [80e6, 1e9, 10]
+  - [1e9, 6e9, 3]

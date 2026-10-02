@@ -1,0 +1,10 @@
+id: IEC61000-4-3_L4
+name: IEC 61000-4-3 Level 4 - Radiated RF immunity (30 V/m, 80 MHz-6 GHz)
+family: IEC 61000-4-3
+type: radiated_immunity
+unit: V/m
+modulation: 80% AM 1 kHz
+segments:
+  - [80e6, 6e9, 30, 30]
+verify: false
+notes: Unmodulated level shown; AM 80% raises peak field by 1.8x (5.1 dB) - included by the engine.

@@ -1,0 +1,64 @@
+# Example: mobile-robot motor controller in a die-cast aluminium box.
+name: KR Robot Motor Controller Rev A
+description: STM32 main controller + 24 V -> 5 V buck + BLDC motor drive
+platform: Ground robot
+system: Drive train controller
+measurement_distance_m: 3
+standards: [CISPR32_B_RE, CISPR32_B_CE_QP, IEC61000-4-3_L3, IEC61000-4-6_L3]
+
+circuits:
+  - name: MCU
+    type: digital
+    supply_voltage: 3.3
+    pcb: {layers: 2, ground_plane: false, decoupling: true, stitching_vias: false}
+    sources:
+      - {name: HSE_CLK, kind: clock, frequency: 25MHz, amplitude_v: 3.3, rise_time: 1.5n, duty: 0.5, current_a: 0.02}
+      - {name: SPI_CLK, kind: clock, frequency: 12.5MHz, amplitude_v: 3.3, rise_time: 2n, current_a: 0.015}
+    loops:
+      - {name: CLK_TO_MCU, source: HSE_CLK, area_m2: 3e-4}
+      - {name: SPI_BUS, source: SPI_CLK, area_m2: 6e-4}
+    victims:
+      - {name: ENCODER_IN, threshold_v: 0.4, input_impedance_ohm: 10k, cable: ENCODER, f_min: 150k, f_max: 6G}
+
+  - name: BUCK_5V
+    type: smps
+    supply_voltage: 24
+    input_current_a: 1.2
+    input_cap_f: 10u
+    input_cap_esr: 0.01
+    input_cap_esl: 3n
+    switch_node_to_chassis_f: 15p
+    power_cable: DC_IN
+    input_filter: EMI_IN
+    sources:
+      - {name: SW, kind: switching, frequency: 500kHz, amplitude_v: 24, rise_time: 10n, duty: 0.21, current_a: 1.2}
+    loops:
+      - {name: HOT_LOOP, source: SW, area_m2: 1.5e-4, current_a: 1.2}
+
+cables:
+  - {name: DC_IN, length_m: 1.5, shielded: false, exits_enclosure: true, connected_circuit: BUCK_5V, filter: EMI_IN}
+  - {name: ENCODER, length_m: 0.8, shielded: true, shield_termination: pigtail, pigtail_length_m: 0.03,
+     exits_enclosure: true, connected_circuit: MCU}
+  - {name: CAN_BUS, length_m: 2.0, shielded: false, exits_enclosure: true, connected_circuit: MCU}
+
+filters:
+  - name: EMI_IN
+    topology: LC
+    mode: DM
+    source_impedance: 50
+    load_impedance: 50
+    elements:
+      - {kind: L, value: 4.7u, position: series, esr: 0.02, parasitic_c: 5p, name: L1}
+      - {kind: C, value: 4.7u, position: shunt, esr: 0.005, esl: 1n, name: C1}
+
+enclosure:
+  name: Die-cast box
+  material: aluminium
+  thickness_m: 2.5e-3
+  dimensions_m: [0.22, 0.16, 0.06]
+  required_se_db: 30
+  apertures:
+    - {name: Vent slots, length_m: 0.06, count: 8}
+    - {name: Connector cut-out, length_m: 0.035, count: 1}
+  seams:
+    - {name: Lid, length_m: 0.76, fastener_pitch_m: 0.08, gasket: false}

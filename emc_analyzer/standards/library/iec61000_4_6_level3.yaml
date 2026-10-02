@@ -1,0 +1,9 @@
+id: IEC61000-4-6_L3
+name: IEC 61000-4-6 Level 3 - Conducted RF immunity (10 V emf, 150 kHz-80 MHz)
+family: IEC 61000-4-6
+type: conducted_immunity
+unit: V
+modulation: 80% AM 1 kHz
+segments:
+  - [150e3, 80e6, 10, 10]
+verify: false

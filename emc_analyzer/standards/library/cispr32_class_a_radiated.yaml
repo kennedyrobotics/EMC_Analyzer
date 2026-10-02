@@ -1,0 +1,12 @@
+id: CISPR32_A_RE
+name: CISPR 32 Class A - Radiated emissions 30 MHz-1 GHz (QP @ 10 m)
+family: CISPR 32 / EN 55032
+type: radiated_emission
+unit: dBuV/m
+detector: QP
+distance_m: 10
+segments:
+  - [30e6, 230e6, 40, 40]
+  - [230e6, 1e9, 47, 47]
+verify: true
+notes: Commercial / industrial (Class A) limits.

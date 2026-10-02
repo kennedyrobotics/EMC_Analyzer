@@ -1,0 +1,18 @@
+* 24V -> 5V buck converter with input EMI filter (LTspice-style netlist)
+* The *EMC lines add the information a circuit simulator doesn't need but EMC analysis does.
+*EMC circuit name=BUCK_NETLIST type=smps supply=24 input_current_a=1.0 switch_node_to_chassis_f=20p filter=EMI_NET power_cable=VIN_CABLE
+*EMC source Vsw kind=switching current=4 spread=0
+*EMC loop name=HOT_LOOP source=Vsw area=1.2e-4 current=4
+*EMC filter name=EMI_NET elements=L1,C1,C2 source_z=50 load_z=50 mode=DM
+*EMC cable name=VIN_CABLE length=1 shielded=no connected=BUCK_NETLIST
+Vin in 0 24
+L1 in filt 10u
+C1 filt 0 4.7u
+C2 in 0 100n
+* switch node approximated as a trapezoidal source
+Vsw sw 0 PULSE(0 24 0 8n 8n 0.4u 2u)
+L2 sw out 22u
+C3 out 0 47u
+Rload out 0 5
+.tran 1m
+.end

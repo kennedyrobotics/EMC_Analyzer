@@ -1,0 +1,11 @@
+id: CISPR32_A_CE_AV
+name: CISPR 32 Class A - Conducted emissions AC mains (Average)
+family: CISPR 32 / EN 55032
+type: conducted_emission
+unit: dBuV
+detector: AV
+lisn: 50uH/50ohm
+segments:
+  - [150e3, 500e3, 66, 66]
+  - [500e3, 30e6, 60, 60]
+verify: true
