@@ -102,7 +102,7 @@ verify: false
 
 Drop files into `%USERPROFILE%\.emc_analyzer\standards\` (all projects) or a `standards\` folder next to your project file (that project only), then use **Standards → Reload**. RF environments work the same way in `environments\`.
 
-Built-in: CISPR 32 Class A/B radiated (30 MHz–1 GHz and 1–6 GHz) and conducted (QP/AV), MIL-STD-461G CE102, RE102 (aircraft internal), RS103 (example level), IEC 61000-4-3 levels 1–4, IEC 61000-4-6 levels 1–3. Environments: the Category 1 example digitised from your EAS screen, and a generic industrial 10 V/m environment.
+Built-in: CISPR 32 Class A/B radiated (30 MHz–1 GHz and 1–6 GHz) and conducted (QP/AV), MIL-STD-461G CE102, RE102 (aircraft internal), RS103 (example level), IEC 61000-4-3 levels 1–4, IEC 61000-4-6 levels 1–3. Environments: a generic industrial 10 V/m environment (add your own under `~/.emc_analyzer/environments/`).
 
 ## Extending
 * **New analysis**: write a function decorated with `@register_analysis(...)` in a `.py` file in `%USERPROFILE%\.emc_analyzer\plugins\` or `<project>\plugins\`. See `emc_analyzer/plugins/example_crosstalk_plugin.py`.
